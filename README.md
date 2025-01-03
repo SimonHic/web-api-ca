@@ -46,8 +46,4 @@ Give details of authentication/security implemented on the API (e.g. passport/se
 
 ## Integrating with React App
 
-Describe how you integrated your React app with the API. List the views that use your Web API instead of the TMDB API. Describe any other updates to the React app from Assignment One.
-
-## Independent learning (if relevant)
-
-Briefly explain any non-standard features developed for the app.   
+Describe how you integrated your React app with the API. List the views that use your Web API instead of the TMDB API. Describe any other updates to the React app from Assignment One. 
