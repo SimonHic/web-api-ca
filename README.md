@@ -69,7 +69,7 @@ The React Movies App has been updated to connect with the Movies API for several
 
 The following views now fetch data from the API instead of directly requesting a fetch to the TMDB API:
 
-1. ___Now Playing Movies:__
+1. __Now Playing Movies:__
     - Data is fetched using the `/api/movies/tmdb/now-playing` endpoint.
     - It is displayed on the *Now Playing Movies Page*, which features a list of movies with add-to-watchlist functionality.
 2. __Similar Movies:__
@@ -94,7 +94,7 @@ The following views now fetch data from the API instead of directly requesting a
 
 3. __UI Enhancements:__
     - Added navigation links to new pages in the site header.
-    - Improved integration of new data in the *Movie Details Page*
+    - Improved integration of new data in the *Movie Details Page.*
 
 4. __Backend Integration:__
     - Any API calls for now-playing, similar movies, movie credits, and upcoming movies are now routed through `localhost:8080.`
@@ -106,13 +106,17 @@ The following views now fetch data from the API instead of directly requesting a
 1. __New API Endpoints:__
     - /api/movies/tmdb/now-playing
     - /api/movies/tmdb/:id/similar
+
 2. __Frontend Integrations:__
-    - *Now Playing Movies:*fetch movies `now-playing` in cinemas 
-    - *Similar Movies:*fetch movies `similar` to a movie given a specific movie ID
+    - *Now Playing Movies:*fetch movies `now-playing` in cinemas .
+    - *Similar Movies:*fetch movies `similar` to a movie given a specific movie ID.
+
 3. __Protected Routes:__
     - Implemented route-level protection for all pages, bar the homepage, login page, and sign-up page.
     - If a user isn't logged in: All access attempts will redirect to the login page.
+
 4. __Navigation Updates:__
     - Added new navigation links for Now Playing Movies to site header.
+
 5. __General Enhancements:__
     - Redesigned movie credits and similar movies in movie details page with a clear and structured layout.
