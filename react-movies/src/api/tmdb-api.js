@@ -87,7 +87,23 @@ export const getMovie = (args) => {
    });
   };
 
-  export const getUpcomingMovies = () => {
+export const getUpcomingMovies = async () => {
+    try {
+        const response = await fetch(
+            `http://localhost:8080/api/movies/tmdb/upcoming`
+        );
+
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw error;
+    }
+};
+
+/*   export const getUpcomingMovies = () => {
     return fetch(
       `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
     ).then((response) => {
@@ -101,7 +117,7 @@ export const getMovie = (args) => {
     .catch((error) => {
       throw error
    });
-  };
+  }; */
 
   export const getPopularMovies = () => {
     return fetch(
@@ -137,7 +153,26 @@ export const getMovie = (args) => {
    });
   };
   
-  export const getMovieCredits = ({ queryKey }) => {
+export const getMovieCredits = async (id) => {
+    try {
+        const response = await fetch(
+            `http://localhost:8080/api/movies/tmdb/${id}/credits`
+        );
+
+        if (!response.ok) {
+            const errorResponse = await response.json();
+            //throw new Error(response.json().message);
+            throw new Error(errorResponse.status_message || 'Failed to fetch movie credits');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching movie credits:', error);
+        throw error;
+    }
+};
+
+/*   export const getMovieCredits = ({ queryKey }) => {
     const [, idPart] = queryKey;
     const { id } = idPart;
     return fetch(
@@ -153,7 +188,7 @@ export const getMovie = (args) => {
     .catch((error) => {
       throw error
    });
-  };
+  }; */
 
   export const login = async (username, password) => {
     const response = await fetch('http://localhost:8080/api/users', {

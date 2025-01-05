@@ -12,8 +12,8 @@ import Spinner from '../spinner'
 
 export default function MovieCredits({ movie }) {
   const { data , error, isLoading, isError } = useQuery(
-    ["credits", { id: movie.id }],
-    getMovieCredits
+    ["credits", movie.id ],
+    () => getMovieCredits(movie.id)
   );
   
   if (isLoading) {
