@@ -31,3 +31,22 @@ export const getMovieGenres = async () => {
         throw error;
     }
 };
+
+export const getMovieCredits = async (id) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_KEY}`
+        );
+
+        if (!response.ok) {
+            const errorResponse = await response.json();
+            //throw new Error(response.json().message);
+            throw new Error(errorResponse.status_message || 'Failed to fetch movie credits');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching movie credits:', error);
+        throw error;
+    }
+};

@@ -3,7 +3,8 @@ import asyncHandler from 'express-async-handler';
 import express from 'express';
 import {
     getMovieGenres,
-    getUpcomingMovies
+    getUpcomingMovies,
+    getMovieCredits
   } from '../tmdb-api';  
 
 const router = express.Router();
@@ -48,6 +49,18 @@ router.get('/tmdb/upcoming', asyncHandler(async (req, res) => {
 router.get('/tmdb/genres', asyncHandler(async (req, res) => {
     const movieGenres = await getMovieGenres();
     res.status(200).json(movieGenres);
+}));
+
+router.get('/tmdb/:id/credits', asyncHandler(async (req, res) => {
+    const {id} = req.params;
+
+    try {
+        const movieCredits = await getMovieCredits(id);
+        res.status(200).json(movieCredits);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch movie credits' });
+    }
+
 }));
 
 export default router;
