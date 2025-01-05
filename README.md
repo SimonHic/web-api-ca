@@ -2,7 +2,7 @@
 
 __Name:__ `Simon Hickey`
 
-__Demo:__ `[Demo-Video](https://www.youtube.com/watch?v=39CleLj3LKI)`
+__Demo:__ [Demo-Video](https://www.youtube.com/watch?v=39CleLj3LKI)
 
 ## Features.
  
