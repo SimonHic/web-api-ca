@@ -6,14 +6,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { getMovieCredits } from "../../api/tmdb-api";
+import { getSimilarMovies } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
 
-export default function MovieCredits({ movie }) {
+export default function SimilarMovies({ movie }) {
   const { data , error, isLoading, isError } = useQuery(
-    ["credits", movie.id ],
-    () => getMovieCredits(movie.id)
+    ["similarMovies", movie.id ],
+    () => getSimilarMovies(movie.id)
   );
   
   if (isLoading) {
@@ -24,28 +24,32 @@ export default function MovieCredits({ movie }) {
     return <h1>{error.message}</h1>;
   }
   
-  const cast = data.cast;
+  const similarMovies = data.results;
 
   return (
+    <div style={{marginTop: "50px"}}>
     <TableContainer component={Paper}>
-      <Table sx={{minWidth: 550}} aria-label="credits table">
+      <Table sx={{minWidth: 550}} aria-label="similar table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{fontWeight: "bold"}}>Actor</TableCell>
-            <TableCell align="center" sx={{fontWeight: "bold"}}>Character</TableCell>
+            <TableCell sx={{fontWeight: "bold"}}>Title</TableCell>
+            <TableCell align="center" sx={{fontWeight: "bold"}}>Release Date</TableCell>
+            <TableCell align="center" sx={{fontWeight: "bold"}}>Overview</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {cast.map((r) => (
-            <TableRow key={r.id}>
-              <TableCell component="th" scope="row">
-                {r.name}
+          {similarMovies.map((movie) => (
+            <TableRow key={movie.id}>
+              <TableCell align="center">
+                {movie.title}
               </TableCell>
-              <TableCell align="center">{r.character}</TableCell>
+              <TableCell align="center">{movie.release_date}</TableCell>
+              <TableCell align="center">{movie.overview}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    </div>
   );
 }
