@@ -103,22 +103,6 @@ export const getUpcomingMovies = async () => {
     }
 };
 
-/*   export const getUpcomingMovies = () => {
-    return fetch(
-      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
-    ).then((response) => {
-      if (!response.ok) {
-        return response.json().then((error) => {
-          throw new Error(error.status_message || "Something went wrong");
-        });
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      throw error
-   });
-  }; */
-
   export const getPopularMovies = () => {
     return fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
@@ -171,24 +155,6 @@ export const getMovieCredits = async (id) => {
         throw error;
     }
 };
-
-/*   export const getMovieCredits = ({ queryKey }) => {
-    const [, idPart] = queryKey;
-    const { id } = idPart;
-    return fetch(
-      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}`
-    ).then( (response) => {
-      if (!response.ok) {
-        return response.json().then((error) => {
-          throw new Error(error.status_message || "Something went wrong");
-        });
-      }
-      return response.json();
-    })
-    .catch((error) => {
-      throw error
-   });
-  }; */
 
   export const login = async (username, password) => {
     const response = await fetch('http://localhost:8080/api/users', {
