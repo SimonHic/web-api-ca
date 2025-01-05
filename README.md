@@ -1,7 +1,8 @@
 # Assignment 2 - Web API.
 
-Name: Simon Hickey
-Demo: {LINK WILL GO HERE}
+__Name:__ `Simon Hickey`
+
+__Demo:__ `{LINK WILL GO HERE}`
 
 ## Features.
  
@@ -56,7 +57,61 @@ Give an overview of your web API design, perhaps similar to the following:
     - All routes bar the Home, Login, and Sign-up pages are protected and require you to be logged in to gain access.
     - Any unauthorized requests to protected endpoints are redirected straigt to the `/login` page.
 2. JWT Authentication: The API uses JSON Web Tokens (JWT) to secure endpoints.
+3. Middleware: The backend uses middleware to verify tokens for access to any protected routes.
 
 ## Integrating with React App
 
-Describe how you integrated your React app with the API. List the views that use your Web API instead of the TMDB API. Describe any other updates to the React app from Assignment One. 
+### Overview
+
+The React Movies App has been updated to connect with the Movies API for several features, replacing or extending functionality that was dependant on the TMDB in `CA-1`.
+
+### Views using API
+
+The following views now fetch data from the API instead of directly requesting a fetch to the TMDB API:
+
+1. ___Now Playing Movies:__
+    - Data is fetched using the `/api/movies/tmdb/now-playing` endpoint.
+    - It is displayed on the *Now Playing Movies Page*, which features a list of movies with add-to-watchlist functionality.
+2. __Similar Movies:__
+    - Data is fetched using the `/api/movies/tmdb/:id/similar` endpoint.
+    - Displayed in the *Movie Details Page*, which shows similar movies based on the currently-selected movie's ID.
+3. __Movie Credits:__
+    - Data is fetched using the `/api/movies/tmdb/:id/credts` endpoint.
+    - Displayed in the *Movie Details Page*, which shows a list of cast memebrs and their roles of a seclected movie's ID.
+4. __Upcoming Movies:__
+    - Data is fetched using the `/api/movies/tmdb/upcoming` endpoint.
+    - Displayed in the *Upcoming Movies Page*, which features a list of movies that will be out soon, with add to watch-list functionality.
+
+### Other Integration with the React Movies App
+
+1. __Authentication Integration:__
+    -
+    -
+
+2. __Protected Routes:__
+    -
+    -
+
+3. __UI Enchancements:__
+    -
+    -
+
+4. __Backend Integration:__
+    -
+    -
+
+## Additional Features
+
+1. __New API Endpoints:__
+    - /api/movies/tmdb/now-playing
+    - /api/moives/tmdb/:id/similar
+2. __Frontend Integrations:__
+    - *Now Playing Movies:*fetch movies `now-playing` in cinemas 
+    - *Similar Movies:*fetch movies `similar` to a movie given a specific movie ID
+3. __Protected Routes:__
+    - Implemented route-level protection for all pages, abr the hompage, login page, and sign-up page.
+    - If a user isn't logged in: All access attempts will redirect to the login page.
+4. __Navigation Updates:__
+    - Added new navigation links for Now Playing Movies to site header.
+5. __General Enhancements:__
+    - Redesigned movie credits and similar movies in modie details page with a clear and structured layout.
