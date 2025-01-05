@@ -103,6 +103,22 @@ export const getUpcomingMovies = async () => {
     }
 };
 
+export const getNowPlayingMovies = async () => {
+  try {
+      const response = await fetch(
+          `http://localhost:8080/api/movies/tmdb/now-playing`
+      );
+
+      if (!response.ok) {
+          throw new Error(response.json().message);
+      }
+
+      return await response.json();
+  } catch (error) {
+      throw error;
+  }
+};
+
   export const getPopularMovies = () => {
     return fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`
@@ -154,6 +170,25 @@ export const getMovieCredits = async (id) => {
         console.error('Error fetching movie credits:', error);
         throw error;
     }
+};
+
+export const getSimilarMovies = async (id) => {
+  try {
+      const response = await fetch(
+          `http://localhost:8080/api/movies/tmdb/${id}/similar`
+      );
+
+      if (!response.ok) {
+          const errorResponse = await response.json();
+          //throw new Error(response.json().message);
+          throw new Error(errorResponse.status_message || 'Failed to fetch similar movies');
+      }
+
+      return await response.json();
+  } catch (error) {
+      console.error('Error fetching similar movies:', error);
+      throw error;
+  }
 };
 
   export const login = async (username, password) => {

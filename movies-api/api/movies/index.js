@@ -4,7 +4,9 @@ import express from 'express';
 import {
     getMovieGenres,
     getUpcomingMovies,
-    getMovieCredits
+    getMovieCredits,
+    getNowPlayingMovies,
+    getSimilarMovies
   } from '../tmdb-api';  
 
 const router = express.Router();
@@ -51,6 +53,11 @@ router.get('/tmdb/genres', asyncHandler(async (req, res) => {
     res.status(200).json(movieGenres);
 }));
 
+router.get('/tmdb/now-playing', asyncHandler(async (req, res) => {
+    const nowPlayingMovies = await getNowPlayingMovies();
+    res.status(200).json(nowPlayingMovies);
+}));
+
 router.get('/tmdb/:id/credits', asyncHandler(async (req, res) => {
     const {id} = req.params;
 
@@ -59,6 +66,18 @@ router.get('/tmdb/:id/credits', asyncHandler(async (req, res) => {
         res.status(200).json(movieCredits);
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch movie credits' });
+    }
+
+}));
+
+router.get('/tmdb/:id/similar', asyncHandler(async (req, res) => {
+    const {id} = req.params;
+
+    try {
+        const similarMovies = await getSimilarMovies(id);
+        res.status(200).json(similarMovies);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch similar movies' });
     }
 
 }));
